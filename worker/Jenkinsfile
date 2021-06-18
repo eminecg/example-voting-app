@@ -40,7 +40,7 @@ pipeline {
 
   post{
     always{
-      echo 'Pipeline for worker is complete..'
+      echo 'Pipeline for worker is complete...............'
   }
 }
 }
