@@ -49,9 +49,18 @@ pipeline{
 }
   post{
     always{
-
       echo 'Pipeline for worker is complete ,yes..'
   }
+  failure{
+    slackSend(channel:"codechannel",message:"Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+  }
+  success{
+    slackSend(channel:"codechannel",message:"Build Success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+  }
+
+
+
+
 }
 
 }
