@@ -1,4 +1,4 @@
-pipeline {
+pipeline{
   agent any
 
   tools{
@@ -12,22 +12,18 @@ pipeline {
             dir('worker'){
               sh 'mvn compile'
             }
-
         }
     }
-}
- stages{
     stage('test') {
         steps {
             echo 'Running'
             dir('worker'){
                 sh 'mvn clean test'
             }
-
         }
     }
-}
- stages{
+
+
     stage('package') {
         steps {
             echo 'Packaging'
@@ -37,10 +33,10 @@ pipeline {
         }
     }
 }
-
   post{
     always{
       echo 'Pipeline for worker is complete...............'
   }
 }
+
 }
