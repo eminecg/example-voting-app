@@ -9,7 +9,7 @@ pipeline{
       steps{
         echo 'building vote app'
         dir('worker'){
-        sh 'mvn compile'
+        sh 'python compile'
 }
 }
 }
@@ -17,7 +17,7 @@ pipeline{
       steps{
         echo 'running unit tests on vote app'
         dir('worker'){
-        sh 'mvn clean test'
+        sh 'python test'
 }
 }
 }
