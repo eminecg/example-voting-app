@@ -6,9 +6,7 @@ pipeline{
 }
   stages{
     stage('build'){
-    when {
-      changeset "**/vote/**"
-    }
+
       steps{
         echo 'building vote app'
         dir('vote'){
@@ -17,9 +15,7 @@ pipeline{
 }
 }
     stage('test'){
-    when {
-      changeset "**/vote/**"
-    }
+
       steps{
         echo 'running unit tests on vote app'
         dir('vote'){
