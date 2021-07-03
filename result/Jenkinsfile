@@ -1,9 +1,10 @@
 pipeline{
   agent{
     docker{
-      image: 'node:8.16.0-alpine'
+      image 'node:8.16.0-alpine'
+}
   }
-  }
+
   stages{
     stage('build') {
       when{
@@ -18,13 +19,11 @@ pipeline{
         }
     }
     stage('test') {
-
     when{
         changeset "**/result/**"
         }
-
         steps{
-            echo 'Running Unit Test on result app'
+            echo 'Running'
             dir('result'){
               sh 'npm install'
               sh 'npm test'
