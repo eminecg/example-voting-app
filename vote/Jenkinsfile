@@ -2,10 +2,14 @@ pipeline{
   agent{
     docker{
     image 'python:2.7.16-slim'
+    args '-v $HOME/.m2:/root/.m2'
 }
 }
   stages{
     stage('build'){
+      when {
+        changeset "**/vote/**"
+    }
 
       steps{
         echo 'building vote app'
@@ -15,7 +19,9 @@ pipeline{
 }
 }
     stage('test'){
-
+      when {
+        changeset "**/vote/**"
+    }
       steps{
         echo 'running unit tests on vote app'
         dir('vote'){
