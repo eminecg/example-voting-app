@@ -3,8 +3,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN  mvn package -DskipTests && /
- mvn target/worker-jar-with-dependencies.jar /run/worker.jar  && /
+RUN  mvn package -DskipTests && \
+ mvn target/worker-jar-with-dependencies.jar /run/worker.jar  && \
 mvn -rf *
 
 
