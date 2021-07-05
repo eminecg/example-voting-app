@@ -1,11 +1,10 @@
-FROM mvn:3.8.1-jdk-11
+FROM maven:3.6.1-jdk-8-slim
 WORKDIR /app
 
 COPY . .
 
-RUN mvn install  && \
-    mvn audit fix
+RUN mvn package -DskipTests && /
+    mvn target/worker-jar-with-dependencies.jar /run/worker.jar  && /
+    mvn -rf *
 
-EXPOSE 4000
-
-CMD worker.jar start
+CMD java -jar /run/worker.jar
