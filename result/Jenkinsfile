@@ -12,6 +12,7 @@ pipeline{
   }
       when{
         changeset "**/result/**"
+        branch 'master'
       }
 
         steps {
@@ -31,6 +32,7 @@ pipeline{
 
     when{
         changeset "**/result/**"
+        branch 'master'
         }
         steps{
             echo 'Running'
