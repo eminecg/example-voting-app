@@ -35,7 +35,7 @@ pipeline{
         sh 'nosetests -v'
 }
 }
-}
+}}
 stage('docker-package'){
   agent any
   when {
@@ -43,7 +43,7 @@ stage('docker-package'){
     branch 'master'
   }
   steps{
-    echo 'packaging result image into a jarfile'
+    echo 'packaging vote image into a jarfile'
     script{
       docker.withRegistry('https://index.docker.io/v1/','dockerlogin'){
       def voteImage=docker.build("emnc/vote:v${env.BUILD_ID}","./vote")
