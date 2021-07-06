@@ -64,7 +64,7 @@ pipeline{
         branch 'master'
       }
       steps{
-        echo 'packaging worker image into a jarfile'
+        echo 'packaging worker image into a jarfile added'
         script{
           docker.withRegistry('https://index.docker.io/v1/','dockerlogin'){
           def workerImage=docker.build("emnc/worker:v${env.BUILD_ID}","./worker")
