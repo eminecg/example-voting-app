@@ -35,11 +35,13 @@ pipeline{
 stage('docker-package'){
   steps{
     echo 'packaging worker image into a jarfile'
-     docker.withRegistry('https://index.docker.io/v1',dockerlogin){
+    script{
+      docker.withRegistry('https://index.docker.io/v1',dockerlogin){
         def workerImage=docker.build("emnc/worker:v${env.BUILD_ID}","./dockerfiles/test")
         workerImage.push();
         workerImage.push("${env.BRANCH_NAME}");
-     }
+    }
+    }
 
 }
 }
