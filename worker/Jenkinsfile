@@ -49,7 +49,7 @@ pipeline{
       branch 'master'
     }
       steps{
-        echo 'packaging worker app into a jarfile'
+        echo 'packaging worker app into a jarfile ,done'
         dir('worker'){
         sh 'mvn package -DskipTests'
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint:true
