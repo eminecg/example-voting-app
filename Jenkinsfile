@@ -4,7 +4,7 @@ pipeline{
 
 
   stages{
-  stage('worker build'){
+  stage('worker build case '){
     agent{
       docker{
         image 'maven:3.6.1-jdk-8-slim'
@@ -209,7 +209,7 @@ stage('result docker-package'){
 
   post{
     always{
-      echo 'the job is complete'
+      echo 'the mono pipeline job is complete'
 }
 }
 
