@@ -49,7 +49,11 @@ pipeline{
       branch 'master'
     }
       steps{
+<<<<<<< HEAD
+        echo 'packaging worker app into a jarfile'
+=======
         echo 'packaging worker app into a jarfile ,done'
+>>>>>>> b02d9b348921287b5f332811ed405969e8002053
         dir('worker'){
         sh 'mvn package -DskipTests'
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint:true
@@ -64,7 +68,11 @@ pipeline{
         branch 'master'
       }
       steps{
+<<<<<<< HEAD
+        echo 'packaging worker image into a jarfile added'
+=======
         echo 'packaging worker image into a jarfile'
+>>>>>>> b02d9b348921287b5f332811ed405969e8002053
         script{
           docker.withRegistry('https://index.docker.io/v1/','dockerlogin'){
           def workerImage=docker.build("emnc/worker:v${env.BUILD_ID}","./worker")
