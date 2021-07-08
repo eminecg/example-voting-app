@@ -8,7 +8,7 @@ pipeline {
           args '-v $HOME/.m2:/root/.m2'
         }
 
-<<<<<<< HEAD
+
   stages{
   stage('worker build'){
     agent{
@@ -34,7 +34,7 @@ pipeline {
       docker{
         image 'maven:3.6.1-jdk-8-slim'
         args '-v $HOME/.m2:/root/.m2'
-=======
+
       }
       when {
         changeset '**/worker/**'
@@ -44,7 +44,7 @@ pipeline {
         echo 'building worker app'
         dir(path: 'worker') {
           sh 'mvn compile'
->>>>>>> b2ee9f25ea8d02c3653b34a6e8087ee0d232b86e
+
         }
 
       }
@@ -244,19 +244,19 @@ pipeline {
       }
     }
 
-<<<<<<< HEAD
+
   post{
     always{
       echo 'the mono pipeline job is complete'
 }
 }
-=======
+
   }
   post {
     always {
       echo 'the job is complete'
     }
->>>>>>> b2ee9f25ea8d02c3653b34a6e8087ee0d232b86e
+
 
   }
 }
