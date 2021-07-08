@@ -1,0 +1,51 @@
+version: "3.3"
+
+volumes:
+      db-data:
+
+
+networks:
+   instavote:
+     driver: bridge
+
+services:
+  vote:
+      image: emnc/vote:master
+      ports:
+        - 5004:80
+      depends_on:
+        - redis
+      networks:
+        - instavote
+
+  redis:
+      image: redis:alpine
+      networks:
+        - instavote
+
+  db:
+      image: postgres:9.4   
+      volumes:
+        - "db-data:/var/lib/postgresql/data"
+      networks:        
+        - instavote
+      environment:
+        - POSTGRES_HOST_AUTH_METHOD=trust
+
+  result:
+      image: emnc/result:master
+      ports:
+        - 5005:4000
+      depends_on:
+        - db
+      networks:
+        - instavote
+
+  worker:
+      image: emnc/worker:master
+      depends_on:
+        - redis
+        - db
+      networks:
+        - instavote
+ 
