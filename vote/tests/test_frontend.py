@@ -12,7 +12,7 @@ class VoteUnitTest(unittest.TestCase):
 
 
     def test_home_status_code(self):
-        """Assert that the home page loads successfully"""
+        """Assert that the home page loads successfully !! """
         result = self.app.get('/')
         self.assertEqual(result.status_code, 200)
 
