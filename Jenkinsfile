@@ -1,17 +1,10 @@
 pipeline {
 
   agent any
-  stages {
-    stage('worker build') {
-      agent {
-        docker {
-          image 'maven:3.6.1-jdk-8-slim'
-          args '-v $HOME/.m2:/root/.m2'
-        }
-}
-}
+
 
   stages{
+
   stage('worker build'){
     agent{
       docker{
@@ -52,26 +45,6 @@ pipeline {
       }
     }
 
-    stage('worker test') {
-      agent {
-        docker {
-          image 'maven:3.6.1-jdk-8-slim'
-          args '-v $HOME/.m2:/root/.m2'
-        }
-
-      }
-      when {
-        changeset '**/worker/**'
-        branch 'master'
-      }
-      steps {
-        echo 'running unit tests on worker app'
-        dir(path: 'worker') {
-          sh 'mvn clean test'
-        }
-
-      }
-    }
 
     stage('worker package') {
       agent {
