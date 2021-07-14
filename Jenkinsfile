@@ -1,6 +1,6 @@
 pipeline {
 
-  agent any
+  agent none
 
 
   stages{
@@ -10,7 +10,7 @@ pipeline {
       docker{
         image 'maven:3.6.1-jdk-8-slim'
         args '-v $HOME/.m2:/root/.m2'
-}
+        }
     }
     when {
       changeset "**/worker/**"
@@ -22,6 +22,7 @@ pipeline {
       sh 'mvn compile'
 }
 }
+
 }
 
   stage('worker test'){
@@ -30,6 +31,7 @@ pipeline {
         image 'maven:3.6.1-jdk-8-slim'
         args '-v $HOME/.m2:/root/.m2'
 
+      }
       }
       when {
         changeset '**/worker/**'
@@ -264,5 +266,5 @@ pipeline {
 }
 }
 
-  }
+
 }
