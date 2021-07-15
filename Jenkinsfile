@@ -110,7 +110,6 @@ pipeline {
 
       }
     }
-
     stage('vote test') {
       agent {
         docker {
@@ -126,8 +125,30 @@ pipeline {
       steps {
         echo 'running unit tests on vote app'
         dir(path: 'vote') {
-          sh 'pip install -r requirements.txt'
-          sh 'nosetests -v'
+        sh 'pip install -r requirements.txt'
+        sh 'nosetests -v'
+
+        }
+
+      }
+    }
+    stage('vote integration') {
+      agent {
+        docker {
+          image 'python:2.7.16-slim'
+          args '--user root'
+        }
+
+      }
+      when {
+        changeset '**/vote/**'
+        branch 'master'
+      }
+      steps {
+        echo 'running unit tests on vote app'
+        dir(path: 'vote') {
+          sh 'sh integration_test.sh'
+
         }
 
       }
