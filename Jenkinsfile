@@ -147,7 +147,7 @@ pipeline {
       steps {
         echo 'running unit tests on vote app'
         dir(path: 'vote') {
-          sh 'sh integration_test.sh'
+          sh 'bash integration_test.sh'
 
         }
 
