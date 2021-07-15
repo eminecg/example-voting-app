@@ -140,10 +140,10 @@ pipeline {
         }
 
       }
-      when {
-        changeset '**/vote/**'
-        branch 'master'
-      }
+//      when {
+//        changeset '**/vote/**'
+//        branch 'master'
+//      }
       steps {
         echo 'running unit tests on vote app'
         dir(path: 'vote') {
