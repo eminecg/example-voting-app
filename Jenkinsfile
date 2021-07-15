@@ -133,13 +133,7 @@ pipeline {
       }
     }
     stage('vote integration') {
-      agent {
-        docker {
-          image 'python:2.7.16-slim'
-          args '--user root'
-        }
-
-      }
+      agent any
 //      when {
 //        changeset '**/vote/**'
 //        branch 'master'
@@ -147,7 +141,7 @@ pipeline {
       steps {
         echo 'running unit tests on vote app'
         dir(path: 'vote') {
-          sh 'bash integration_test.sh'
+          sh 'sh integration_test.sh'
 
         }
 
